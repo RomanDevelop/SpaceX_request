@@ -1,6 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:spacex_app/models/launch.dart';
-import 'package:spacex_app/data/queries.dart'; // Импортируйте файл с запросами
+import 'package:spacex_app/data/queries.dart';
 
 class SpaceXRepository {
   final GraphQLClient client;
@@ -10,9 +10,12 @@ class SpaceXRepository {
   Future<List<Launch>> getLaunches() async {
     final result = await client.query(
       QueryOptions(
-        document: gql(getLaunchesQuery), // Убедитесь, что это строка запроса
+        document: gql(getLaunchesQuery),
       ),
     );
+
+    // Логирование результата запроса
+    print(result.data);
 
     if (result.hasException) {
       throw Exception(result.exception.toString());

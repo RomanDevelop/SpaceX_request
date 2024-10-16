@@ -10,10 +10,11 @@ class SpaceXCubit extends Cubit<List<Launch>> {
   Future<void> fetchLaunches() async {
     try {
       final launches = await repository.getLaunches();
+      print('Fetched launches: $launches');
       emit(launches);
     } catch (e) {
       emit([]); // Эмитируем пустой список в случае ошибки
-      print(e); // Логирование ошибки
+      print('Error fetching launches: $e'); // Логирование ошибки
     }
   }
 }

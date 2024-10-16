@@ -8,6 +8,7 @@ query {
       rocket_name
     }
     launch_site {
+      site_name
       site_name_long
     }
     links {

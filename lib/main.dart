@@ -7,9 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initHiveForFlutter(); // Необходим для кеширования
+  await initHiveForFlutter(); // Необходим для кеширования Hive
   final HttpLink httpLink =
       HttpLink('https://spacex-production.up.railway.app/');
+
   final GraphQLClient client = GraphQLClient(
     link: httpLink,
     cache: GraphQLCache(store: HiveStore()),
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
       create: (context) =>
           SpaceXCubit(SpaceXRepository(client))..fetchLaunches(),
       child: MaterialApp(
+        title: 'SpaceX Launches',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
         home: HomeScreen(),
       ),
     );
